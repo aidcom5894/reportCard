@@ -45,12 +45,16 @@ if(isset($_POST['instLogin']))
 	if(mysqli_num_rows($matchCredentials)>0)
 	{
 		session_start();
+		
+		$_SESSION['instSession'] = $instUniqueID;
 
-		$_SESSION['activeInst'] = $instUniqueID;
-
-		echo "<script>alert('Credentials Verified. Now Loging to Portal')</script>";
-
-		echo "<script>windows.location.href='institute_dashboard.php'</script>";
+		echo "<script>alert('Credentials Matched')</script>";
+		echo "<script>window.location.href='institute_dashboard.php'</script>";
+	}
+	else
+	{
+		echo "<script>alert('Credentials Mismatched')</script>";
+		echo "<script>window.location.href=''</script>";
 	}
 }
 
